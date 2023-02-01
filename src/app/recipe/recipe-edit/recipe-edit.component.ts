@@ -4,6 +4,7 @@ import {subscribeOn} from "rxjs";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RecipeService} from "../recipe.service";
 import {Recipes} from "../recipe.model";
+import {DataStorageService} from "../../shared/data-storage.service";
 
 @Component({
   selector: 'app-recipe-edit',
@@ -17,7 +18,8 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private recipeService: RecipeService,
-              private router: Router) {
+              private router: Router,
+              private dataStorage :DataStorageService) {
   }
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.addRecipe(newRecipe)
     }
     this.onCancle()
+    this.dataStorage.storeRecipe()
   }
 
   onCancle() {

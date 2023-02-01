@@ -22,7 +22,10 @@ export class ShopingEditComponent implements OnInit, OnDestroy {
   editedItem: Ingredient;
 
   ngOnInit() {
-    this.subscription = this.slService.startingEditing.subscribe(
+    // console.log(this.slService.a)
+    this.subscription = this.slService.startingEditing
+      .
+    subscribe(
       (index: number) => {
         this.editedItemIndex = index;
         this.editMode = true;
@@ -63,4 +66,7 @@ export class ShopingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
 
   }
+
+
+
 }
