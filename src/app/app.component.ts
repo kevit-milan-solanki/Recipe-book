@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ShoopinfListService} from "./shoping-list/shoopinf-list.service";
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,12 @@ import {ShoopinfListService} from "./shoping-list/shoopinf-list.service";
   styleUrls: ['./app.component.css'],
   providers: []
 })
-export class AppComponent {
-  lodadeFeature = 'recipe';
+export class AppComponent implements OnInit{
+constructor(private authSrevice : AuthService) {
+}
+  ngOnInit() {
+  this.authSrevice.autoLogin()
 
-  onNaviget(feature: string) {
-    this.lodadeFeature = feature;
   }
+
 }

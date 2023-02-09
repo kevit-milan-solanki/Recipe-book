@@ -66,7 +66,4 @@ export class ShopingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
 
   }
-
-
-
 }

@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -15,7 +15,11 @@ import {AppRoutingModule} from "./app-routing.module";
 import {RecipeStartComponent} from './recipe/recipe-start/recipe-start.component';
 import {RecipeEditComponent} from './recipe/recipe-edit/recipe-edit.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthComponent} from "./auth/auth.component";
+import {LodingSpinnerComponent} from "./shared/loding-spiner/loding-spinner.component";
+import {AuthIntersepterService} from "./auth/auth.intersepter.service";
+import {AlertCompnent} from "./shared/alert/alert.compnent";
 
 @NgModule({
   declarations: [
@@ -29,7 +33,10 @@ import { HttpClientModule} from "@angular/common/http";
     ShopingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent,
+    LodingSpinnerComponent,
+    AlertCompnent
 
   ],
   imports: [
@@ -40,7 +47,11 @@ import { HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthIntersepterService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -29,7 +29,6 @@ export class RecipeService {
   constructor(private slService: ShoopinfListService) {
   }
 
-
   setRecipe(recipe : Recipes[]){
       this.recipes =  recipe
       this.recipeChanged.next(this.recipes.slice())
