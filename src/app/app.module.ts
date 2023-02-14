@@ -20,6 +20,7 @@ import {AuthComponent} from "./auth/auth.component";
 import {LodingSpinnerComponent} from "./shared/loding-spiner/loding-spinner.component";
 import {AuthIntersepterService} from "./auth/auth.intersepter.service";
 import {AlertCompnent} from "./shared/alert/alert.compnent";
+import {PlaceholderDirecive} from "./shared/placeHolder/placeholder.direcive";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AlertCompnent} from "./shared/alert/alert.compnent";
     RecipeEditComponent,
     AuthComponent,
     LodingSpinnerComponent,
-    AlertCompnent
+    AlertCompnent,
+    PlaceholderDirecive
 
   ],
   imports: [

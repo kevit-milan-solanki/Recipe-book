@@ -1,3 +1,5 @@
+<ng-template appPlaceholder></ng-template>
+
 <div class="row">
   <div class="col-xl-12 col-md-6 col-md-offset-3">
 
@@ -5,8 +7,7 @@
 <!--      <p>{{error}}</p>-->
 <!--    </div>-->
 
-    <app-alert-component [message]="error" *ngIf="error" (close)="onCloseError()"></app-alert-component>
-
+<!--    <app-alert-component [message]="error" *ngIf="error" (close)="onCloseError()"></app-alert-component>-->
     <div *ngIf="isLoading" style="text-align: center">
       <app-loading-spiner></app-loading-spiner>
     </div>
@@ -36,7 +37,7 @@
       </div>
 
       <div>
-          <button class="btn btn-primary" [disabled]="!authForm.valid" > {{isLoginMode ? 'LogIn' : 'Signup'}} </button> |
+          <button class="btn btn-success" [disabled]="!authForm.valid" > {{isLoginMode ? 'LogIn' : 'Signup'}} </button> |
         <button type="button" class="btn btn-primary" (click)="onSwitchMode()">Switch to {{isLoginMode ? 'Signup' : 'LogIn'}}</button>
       </div>
     </form>

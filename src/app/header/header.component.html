@@ -8,19 +8,20 @@
     </div>
     <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active" *ngIf="!isAuthrenticated"><a routerLink="/auth" >Authentication</a></li>
-        <li routerLinkActive="active" *ngIf="isAuthrenticated"><a routerLink="/recipes" >Recipes</a></li>
-        <li routerLinkActive="active"><a routerLink="/shopinglist" >Shopping List</a></li>
+        <li routerLinkActive="active" *ngIf="!isAuthrenticated"><a routerLink="/auth">Authentication</a></li>
+        <li routerLinkActive="active" *ngIf="isAuthrenticated"><a routerLink="/recipes">Recipes</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/','shopinglist']" (click)="shopinglist()">Shopping List</a></li>
       </ul>
 
-      <ul class="nav navbar-nav  navbar-right" >
-        <li *ngIf="isAuthrenticated" >
-          <a style="cursor: pointer"(click)="onLogout()" >LogOut</a>
+      <ul class="nav navbar-nav  navbar-right">
+        <li *ngIf="isAuthrenticated">
+          <a style="cursor: pointer" (click)="onLogout()">LogOut</a>
         </li>
-        <li class="dropdown" appDropdown *ngIf="isAuthrenticated"><a class="dropdown-toggle " role="button" >Manage <span class="caret" ></span></a>
+        <li class="dropdown" appDropdown *ngIf="isAuthrenticated"><a class="dropdown-toggle " role="button">Manage <span
+          class="caret"></span></a>
           <ul class="dropdown-menu">
-              <li><a routerLink="/" (click)="onSaveData()" >Save Data</a></li>
-              <li style="cursor: pointer" (click)="onFatchData()"><a>Fatch Data</a></li>
+            <li><a  (click)="onSaveData()">Save Data</a></li>
+            <li style="cursor: pointer" (click)="onFatchData()"><a>Fatch Data</a></li>
           </ul>
         </li>
       </ul>

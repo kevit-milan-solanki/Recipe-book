@@ -1,10 +1,9 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {RecipeService} from "../recipe/recipe.service";
 import {Recipes} from "../recipe/recipe.model";
-import {exhaustMap, map, take, tap} from "rxjs/operators";
+import { map, tap} from "rxjs/operators";
 import {AuthService} from "../auth/auth.service";
-import {using} from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -16,18 +15,17 @@ export class DataStorageService {
   }
 
   storeRecipe() {
+    const UID = this.authService.user.value.id
     const recipes = this.recipeService.grtRecipe();
-    this.httpClient.put('https://recipe-book-app-de416-default-rtdb.firebaseio.com/recipes.json', recipes)
+    this.httpClient.put('https://recipebook-app-6729b-default-rtdb.firebaseio.com/'+UID+'/recipe.json', recipes)
       .subscribe(response => {
-        // console.log(response)
       })
   }
 
-
   fatchData() {
-
+    const UID = this.authService.user.value.id
     return this.httpClient.get<Recipes[]>
-    ('https://recipe-book-app-de416-default-rtdb.firebaseio.com/recipes.json',
+    ('https://recipebook-app-6729b-default-rtdb.firebaseio.com/'+UID+'/recipe.json',
     ).pipe(
       map(recipes => {
         return recipes.map(recipe => {
@@ -40,5 +38,4 @@ export class DataStorageService {
         this.recipeService.setRecipe(recipe)
       }))
   }
-
 }

@@ -46,38 +46,42 @@ export class AuthService {
   }
 
   signUp(email: string, password: string) {
-    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAbHv20MGHfWKftejNcSe3VddYAXZDcHC0",
+    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD_vZFPOUZmP5co_p4FLvQ-HwJw7pC-7Y0",
       {
         email: email,
         password: password,
         returnSecureToken: true
       }
     )
-      .pipe(catchError(this.HandelError), tap(responceData => {
-            this.handleAuthrenication(responceData.email,
-              responceData.localId,
-              responceData.idToken,
-              +responceData.expiresIn)
+      .pipe(catchError(this.HandelError),
+        tap(responseData => {
+            this.handleAuthrenication(responseData.email,
+              responseData.localId,
+              responseData.idToken,
+              +responseData.expiresIn)
           }
         )
       );
+
   }
 
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>
-    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAbHv20MGHfWKftejNcSe3VddYAXZDcHC0', {
+    ('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD_vZFPOUZmP5co_p4FLvQ-HwJw7pC-7Y0', {
       email: email,
       password: password,
       returnSecureToken: true
     })
-      .pipe(catchError(this.HandelError), tap(responceData => {
-          this.handleAuthrenication(responceData.email,
-            responceData.localId,
-            responceData.idToken,
-            +responceData.expiresIn)
+      .pipe(catchError(this.HandelError),
+        tap(responseData => {
+          this.handleAuthrenication(responseData.email,
+            responseData.localId,
+            responseData.idToken,
+            +responseData.expiresIn)
         }
       ));
+
   }
 
   private HandelError(errorRes: HttpErrorResponse) {

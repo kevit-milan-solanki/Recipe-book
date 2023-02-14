@@ -10,7 +10,7 @@ import {map, take, tap} from "rxjs/operators";
 export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService,
-              private routre: Router) {
+              private router: Router) {
   }
 
   canActivate(
@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
         if (isAuth) {
           return true
         }
-        return this.routre.createUrlTree(['/auth']);
+        return this.router.createUrlTree(['/auth']);
       })
     );
   }
